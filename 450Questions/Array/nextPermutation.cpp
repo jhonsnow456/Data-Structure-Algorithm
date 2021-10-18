@@ -8,37 +8,32 @@
 
 using namespace std;
 
+void swap(vector<int> &nums, int i, int j){
+	swap(nums[i], nums[j]);
+}
+
+void reverse(vector<int> &nums, int start){
+	int i = start, j = nums.size() - 1;
+	while (i < j){
+		swap(nums, i, j);
+		i++, j--;
+	}
+}
+
 void nextPermutation(vector<int> &nums){
-	int size = nums.size();
-	if (size == 1) return; // if the size is 1 then there is no possiblity of permutation
+	int i = nums.size() - 2;
 	
-	int index = 1;
-	int rightmostPeak = -1;
-	
-	while (index < size){
-		if (nums[index] > nums[index-1])
-			rightmostPeak = index;
-		index++;
-	}
-	
-	// It may be possible that the array is a decending array
-	if (rightmostPeak == -1){
-		for (int i = 0; i < size/2; i++)
-			swap(nums[i], nums[size-i-1]);
-		return;
+	while (i >= 0 and nums[i+1] <= nums[i])
+		i--;
+
+	if (i >= 0){
+		int j = nums.size() - 1;
+		while (nums[j] <= nums[i])
+			j--;
+		swap(nums, i, j);
 	}
 
-	// find the element in the range nums[rightmostPeak - 1] to nums[rightmostPeak] to the right 
-	int min = nums[rightmostPeak];
-	int search_index = rightmostPeak;
-
-	for (index = rightmostPeak; index < size; index++){
-		if (nums[index] > nums[rightmostPeak] and nums[index] < nums[search_index])
-			search_index = index;
-	}
-
-	swap(nums[rightmostPeak-1], nums[search_index]);
-	sort(nums.begin() + rightmostPeak, nums.end());
+	reverse(nums, i+1);
 }
 
 int main(){
