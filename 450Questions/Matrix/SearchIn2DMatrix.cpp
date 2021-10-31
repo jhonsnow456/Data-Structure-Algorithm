@@ -2,29 +2,14 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 bool searchMatrix(vector<vector<int>>& matrix, int target) {
-	int i = 0;
-	int m = matrix.size();
-	int n = matrix[0].size();
-
-	while (i < m && matrix[i][n - 1] < target) 
-		i++;
-
-	int low = 0;
-	int high = n - 1;
-
-	while (low < high){
-		int mid = low + (high - low) / 2;
-
-		if (matrix[i][mid] == target)
-			return true;
-		if (target < matrix[i][mid])
-			high = mid - 1;
-		else 
-			low = mid + 1; 
+	for (vector<int> i: matrix){
+		bool found = binary_search(i.begin(), i.end(), target);
+		if (found) return true;
 	}
 
 	return false;
@@ -37,7 +22,7 @@ int main(){
 		{23, 30, 34, 60}
 	}; 
 
-		cout << searchMatrix(matrix, 3) << endl;
+		cout << searchMatrix(matrix, 1) << endl;
 
     return 0; 
 }
