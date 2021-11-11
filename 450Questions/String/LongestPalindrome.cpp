@@ -59,7 +59,7 @@ string longestPalin(string s){
                 int subarray_length = 2 * gap;
                 if (subarray_length > best_length){
                     best_length = subarray_length;
-                    best_string = s.substr(mid - gap + 1, len);
+                    best_string = s.substr(mid - gap + 1, subarray_length);
                 }
             }
         }
@@ -68,7 +68,7 @@ string longestPalin(string s){
 }
 
 int main(){
-    string S = "vnrtysfrzrmzlygfv";
+    string S = "qrrc";
         cout << longestPalin(S) << endl;        
     return 0;
 }
