@@ -5,8 +5,7 @@
 
 using namespace std;
 
-string longestPallindrome(string s){
-    
+string longestPallindrome(string s){ 
 
 }
 
