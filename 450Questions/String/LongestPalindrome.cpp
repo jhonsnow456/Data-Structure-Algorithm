@@ -6,7 +6,6 @@
 using namespace std;
 
 string longestPallindrome(string s){ 
-
 }
 
 int main(){
