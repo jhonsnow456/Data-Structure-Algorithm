@@ -1,3 +1,5 @@
+// https://www.geeksforgeeks.org/print-subsequences-string/
+
 #include <iostream>
 #include <unordered_set>
 
