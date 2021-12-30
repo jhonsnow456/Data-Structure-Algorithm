@@ -6,6 +6,8 @@
 
 using namespace std;
 
+/* ====================== DEBUG TEMPLATE  ========================= */
+
 void __print(int x) {cerr << x;}
 void __print(long x) {cerr << x;}
 void __print(long long x) {cerr << x;}
@@ -33,6 +35,7 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define debug(x...)
 #endif
 
+/* ================================================================= */
 
 #define int            long long int
 #define F              first
@@ -49,28 +52,30 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define endl           "\n"
 #define sz(x)          ((int) x.size())
 #define all(p)         p.begin(), p.end()
+#define allr(v)        v.rbegin(), v.rend()
 #define double         long double
 #define que_max        priority_queue <int>
 #define que_min        priority_queue <int, vi, greater<int>>
-#define bug(...)       __f (#__VA_ARGS__, __VA_ARGS__)
-#define input(a)	   for(auto &x: a) cin >> x
-#define print(a)       for(auto &x : a) cout << x << " "; cout << endl
-#define print1(a)      for(auto &x : a) cout << x.F << " " << x.S << endl
-#define print2(a,x,y)  for(int i = x; i < y; i++) cout<< a[i]<< " "; cout << endl
+#define rep(i,a,b)     for( int i = a; i < b; i++ )
+#define rep1(i,a,b)    for( int i = a; i <= b; i++)
+#define repd(i,a,b)    for( int i = a; i >= b; --i)
 
-inline int power(int a, int b)
-{
+inline int power(int a, int b){
 	int x = 1;
-	while (b)
-	{
-		if (b & 1) x *= a;
-		a *= a;
-		b >>= 1;
-	}
+	
+		while (b){
+			if (b & 1) x *= a;
+			a *= a;
+			b >>= 1;
+		}
+	
 	return x;
 }
 
 const int N = 200005;
+
+
+/* ================================================================= */
 
 void solve(){
 	// write the code here
@@ -80,7 +85,7 @@ int32_t main(){
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
 	int test_case = 1;
-    // std::cin >> test_case;
+    std::cin >> test_case;
  
 		for(int i = 1; i <= test_case; i++) {
 			// std::cout<<"Case #"<< i <<": " << std::endl; 
