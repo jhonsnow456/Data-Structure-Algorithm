@@ -3,6 +3,10 @@
     यावद्द्रॄष्टिभ्रुवोर्मध्ये तावत्कालभयं कुत: ॥
 */
 
+/*
+* Write a program to check wether the linkedlist contain a cycle or 
+* not ?
+*/
 #include <bits/stdc++.h>
 
 using namespace std;
