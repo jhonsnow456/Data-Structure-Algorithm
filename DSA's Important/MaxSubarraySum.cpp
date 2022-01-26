@@ -23,7 +23,7 @@ int maxSubarraySum(vector<int> arr){
 			// maxtillnow = 0 2 5 9  7 13  5 8 
 		}
 
-	return (sum < 0) ? 0: sum;   
+	return sum;   
 }
 
 int32_t main(){
