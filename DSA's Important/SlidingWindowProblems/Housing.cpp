@@ -3,6 +3,21 @@
     यावद्द्रॄष्टिभ्रुवोर्मध्ये तावत्कालभयं कुत: ॥
 */
 
+/*
+	Problem decribe the continuos plot segment in ehich you need to take  
+	continuos sub plots in consideration of area k to fulfil your desire.
+	Present the available plots to the buyer by presenting him sets of the 
+	plot.
+	
+	INPUT: 
+	[1, 3, 2, 1, 4, 1, 3, 2, 1, 1, 2]
+	
+	OUTPUT:
+	2 5 
+	4 6
+	5 9
+*/
+
 #include <bits/stdc++.h>
 
 using namespace std;
