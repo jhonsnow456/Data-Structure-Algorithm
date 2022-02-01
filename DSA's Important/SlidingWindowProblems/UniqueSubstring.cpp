@@ -23,7 +23,7 @@ string uniqueSubstring(string &str){
 			// if it is inside the hashmap & its index >= start of the window
 			if (mp.find(ch) != mp.end() and mp[ch] >= start){
 				start = mp[ch] + 1;
-				windowLength = end - 1;
+				windowLength = end - start;
 			}
 
 			// update the last occurence
