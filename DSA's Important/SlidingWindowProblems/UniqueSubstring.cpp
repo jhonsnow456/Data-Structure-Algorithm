@@ -9,7 +9,39 @@
 
 using namespace std;
 
-int uniqueSubstring(string &str){
+string uniqueSubstring(string &str){
+	int start = 0, end = 0;
+
+	int startWindow = -1;
+	unordered_map<char, int> mp;
+
+	int windowLength = 0;
+	int maxWindowLength = 0;
+
+		while (end < str.length()){
+			char ch = str[end];
+			// if it is inside the hashmap & its index >= start of the window
+			if (mp.find(ch) != mp.end() and mp[ch] >= start){
+				start = mp[ch] + 1;
+				windowLength = end - 1;
+			}
+
+			// update the last occurence
+			mp[ch] = end;
+			windowLength++;
+			end++;
+
+			// upadte the maxWindowLength at every step
+			if (windowLength > maxWindowLength){
+				startWindow = start;
+				maxWindowLength = windowLength;
+			}
+		}
+
+	return str.substr(startWindow, startWindow + maxWindowLength);
+}
+
+int uniqueSubstringLength(string &str){
 	unordered_map<char, int> mp;
 	int res = 0;
 
@@ -32,5 +64,6 @@ int32_t main(){
 	// write the code here
 	string str; cin >> str;
 		cout << uniqueSubstring(str) << endl;
+		cout << uniqueSubstringLength(str) << endl;
 	return 0;
 }
