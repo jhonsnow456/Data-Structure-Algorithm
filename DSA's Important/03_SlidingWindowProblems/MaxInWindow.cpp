@@ -39,6 +39,8 @@ vector<int> maxInWindow(vector<int> &input, int k){
 
 // METHOD 2
 vector<int> maxInWindow(vector<int> input, int k){
+	// multiset stores the element in the form of priority_queue 
+	// and also can store the duplicate element.
 	multiset<int>s;
 	vector<int> result;
 	    
