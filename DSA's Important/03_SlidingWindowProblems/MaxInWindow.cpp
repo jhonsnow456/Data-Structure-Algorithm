@@ -52,7 +52,7 @@ vector<int> maxInWindow(vector<int> input, int k){
 	    	result.push_back(*s.rbegin());
 	    
 	    for(int i = 1; i < n - k + 1; i++){
-	        // remove the smallest element
+	        // remove the ith element
 	        auto it = s.find(input[i - 1]);
         	s.erase(it);
 
