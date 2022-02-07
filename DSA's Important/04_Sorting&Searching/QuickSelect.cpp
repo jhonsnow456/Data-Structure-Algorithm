@@ -9,36 +9,37 @@
 
 using namespace std;
 
-int partition(vector<int> &array, int left, int right){
-	int pivot = array[right], prev = left;
+#include <bits/stdc++.h>
 
-		for (int next = left; next <= right - 1; next++){
-			if (array[next] <= pivot){
-				swap(array[prev], array[next]);
+using namespace std;
+
+int partition(vector<int> &array, int left, int right){
+	int pivot = array[right], prev = left - 1;
+
+		for (int next = left; next < right; next++){
+			if (array[next] < pivot){
 				prev++;
+				swap(array[prev], array[next]);
 			}
 		}
 
 		swap(array[prev], array[right]);
 
-	return prev;
+	return prev + 1;
 }
 
 int kthsmallest(vector<int> &array, int left, int right, int k){
-	if (0 < k <= (right - left + 1)){
 
-		int index = partition(array, left, right);
+	int index = partition(array, left, right);
 
-		if (index - left == k - 1)
+		if (index - left == k)
 			return array[index];
 
-		if (index - left > k - 1)
+		if (index - left > k)
 			return kthsmallest(array, left, index - 1, k);
 
-		return kthsmallest(array, index + 1, right, k - index + left - 1);
-	}
-
-	else return INT_MAX;
+		else
+			return kthsmallest(array, index + 1, right, k);
 }
 
 int32_t main(){
