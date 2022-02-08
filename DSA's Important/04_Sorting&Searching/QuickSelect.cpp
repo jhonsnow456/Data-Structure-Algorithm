@@ -9,10 +9,6 @@
 
 using namespace std;
 
-#include <bits/stdc++.h>
-
-using namespace std;
-
 int partition(vector<int> &array, int left, int right){
 	int pivot = array[right], prev = left - 1;
 
