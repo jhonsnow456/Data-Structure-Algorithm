@@ -9,7 +9,7 @@
 
 using namespace std;
 
-bool canBePlaced(int birds, vector<int> nests, int sep){
+bool canBePlaced(int birds, vector<int> &nests, int sep){
 	int N = nests.size();
 	
 	int birdCount = 1; // initially palced
@@ -30,7 +30,7 @@ bool canBePlaced(int birds, vector<int> nests, int sep){
 	return false;
 }
 
-int angryBirds(vector<int> nests, int birds){
+int angryBirds(vector<int> &nests, int birds){
 	int N = nests.size();
 	int start = 0, end = nests[N - 1] - nests[0];
 	int ans = -1;
