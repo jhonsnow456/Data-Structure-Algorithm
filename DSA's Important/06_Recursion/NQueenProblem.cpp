@@ -3,6 +3,8 @@
     यावद्द्रॄष्टिभ्रुवोर्मध्ये तावत्कालभयं कुत: ॥
 */
 
+// https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/
+
 #include <bits/stdc++.h>
 
 using namespace std;
