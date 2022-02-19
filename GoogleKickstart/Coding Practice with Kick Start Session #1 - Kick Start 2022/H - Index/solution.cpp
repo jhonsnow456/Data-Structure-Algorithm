@@ -14,7 +14,7 @@ using namespace std;
 
 void HIndexScore(vector<int> citations){
 	int N = citations.size(), h = 0;
-	priority_queue<int, vector<int>, greater<int>> pq;
+	priority_queue<int, vector<int>, greater<int>> pq; // min heap
 
 		for (int &citation: citations){
 			if (citation > h){
