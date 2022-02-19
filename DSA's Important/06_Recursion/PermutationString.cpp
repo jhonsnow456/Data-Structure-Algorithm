@@ -9,11 +9,11 @@
 /*
 LOGIC
 -----
-										(A)BC
-							/			  |				\
-						A(B)C 	 		B(A)C 			C(B)A
-						/   \			/	\			/	\
-					AB(C)	ACB		BA(C)	BCA 	CB(A)	CAB
+					(A)BC
+	   /			          |				\
+	A(B)C 	 		        B(A)C 			        C(B)A
+	/   \			       /	\			/	\
+    AB(C)   ACB		           BA(C)	BCA 	           CB(A)	CAB
 */
 
 #include <bits/stdc++.h>
