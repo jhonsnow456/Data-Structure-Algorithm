@@ -5,17 +5,6 @@
 
 // https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
 
-
-/*
-LOGIC
------
-					(A)BC
-	   /			          |				\
-	A(B)C 	 		        B(A)C 			        C(B)A
-	/   \			       /	\			/	\
-    AB(C)   ACB		           BA(C)	BCA 	           CB(A)	CAB
-*/
-
 #include <bits/stdc++.h>
 
 using namespace std;
