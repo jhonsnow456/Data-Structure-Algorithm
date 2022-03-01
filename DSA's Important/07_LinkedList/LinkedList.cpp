@@ -31,6 +31,29 @@ void insertAtHead(Node* &head, int data){
 }
 
 /**
+ * Insert node anywhere in the linkedlist but at specified position
+ * 
+ * 
+ * @param head passes as reference object
+ * @param data data to be inserted
+ * @param pos anywhere in the middle of the linkedlist 
+*/
+void inserAtGivenPos(Node* &head, int data, int pos){
+	if (pos == 0)
+		insertAtHead(head, data);
+	else{
+		Node *temp = head;
+
+		while (pos--)
+			temp = temp->next;
+
+		Node *middleNode = new Node(data);
+		middleNode->next = temp->next;
+		temp->next = middleNode;
+	}
+}
+
+/**
  * print the linked list
  * 
  * 
@@ -47,12 +70,15 @@ int32_t main(){
 	// write the code here
 	Node *head = NULL;
 	
+		insertAtHead(head, 5);
 		insertAtHead(head, 4);
 		insertAtHead(head, 3);
 		insertAtHead(head, 2);
 		insertAtHead(head, 1);
 		insertAtHead(head, 0);
 
+		inserAtGivenPos(head, 7, 2);
+		
 		printLinkedList(head);
 
 	return 0;
