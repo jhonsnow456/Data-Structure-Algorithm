@@ -215,7 +215,7 @@ Node *mergeSort(Node* head){
 	Node *a = head;
 	Node *b = mid->next;
 
-		mid->next = NULL;
+		mid->next = NULL; // to break the linkedlist
 
 		// Recursive Sort
 		a = mergeSort(a);
