@@ -144,9 +144,88 @@ Node *kReverse(Node *head, int k){
 	return prev;
 }
 
+
+/**
+ * Merge the two pointer 
+ * 
+ * @param a pointer to the head node
+ * @param b pointer to the node after mid
+ * 
+ * return the merged LinkedList 
+*/
+Node *merge(Node *a, Node *b){
+	if (a == NULL)
+		return b;
+
+	if (b == NULL)
+		return a;
+
+
+	// recursive case
+	Node *c;
+
+		if (a->data < b->data){
+			c = a;
+			c->next = merge(a->next, b);
+		}else{
+			c = b;
+			c->next = merge(a, b->next);
+		}
+
+	return c;
+}
+
+/**
+ * Mid point of the LinkedList:
+ * Implementation of the Floyd's slow and fast pointer 
+ * algorithm 
+ *  
+ * return the mid point of the LinkedList
+*/
+Node *midPoint(Node *head){
+	Node *slow = head;
+	Node *fast = head->next;
+
+		while (fast != NULL and fast->next != NULL){
+			slow = slow->next;
+			fast = fast->next->next; // moves 2x slow pointer
+		}
+
+	return slow;
+}
+
+/**
+ * Merge Sort algorithm performed
+ * over the LinkedList
+ * 
+ * @parm head reference object of head node
+*/
+Node *mergeSort(Node* head){
+	// base case:
+	// if the node is a single node linked list
+	// or an empty linkedlist 
+	if (head == NULL or head->next == NULL)
+		return head;
+
+		// recursive case to find the mid-point of 
+		// the array
+		Node *mid = midPoint(head);
+
+	// break the LinkedList from the middle
+	Node *a = head;
+	Node *b = mid->next;
+
+		mid->next = NULL;
+
+		// Recursive Sort
+		a = mergeSort(a);
+		b = mergeSort(b);
+
+	return merge(a, b);	
+}
+
 /**
  * print the linked list
- * 
  * 
  * @param head is read-only obhject
 */
@@ -179,6 +258,9 @@ int32_t main(){
 
 		head = kReverse(head, 3);
 		printLinkedList(head); // 2->1->0->4->3->7->5->NULL
+
+		head = mergeSort(head);
+		printLinkedList(head); // 0->1->2->3->4->5->7->NULL
 
 	return 0;
 }
