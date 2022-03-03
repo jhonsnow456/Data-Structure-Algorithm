@@ -61,7 +61,7 @@ void inserAtGivenPos(Node* &head, int data, int pos){
  * @return the reference address of the head node 
  * 			after linkedlist is reverse
 */
-Node *recursiveReverse(Node *head){
+Node *recursiveReverse(Node* &head){
 	// if reached the end of the node
 	// or only one node is left
 	if (head == NULL or head->next == NULL)
@@ -76,6 +76,32 @@ Node *recursiveReverse(Node *head){
 
 		return sHead;
 	} 
+}
+
+/**
+ * reverse a linkedlist using iteration 
+ * 
+ * 
+ * @param head passes as a reference object
+ * @return the reference address of the head node 
+ * 			after linkedlist is reverse
+*/
+void iterativeReverse(Node* &head){
+	Node* prev = NULL;
+	Node* curr = head;
+	Node* nextCurr;
+
+		while (curr != NULL){
+			nextCurr = curr->next; //store the address of currentnode
+			curr->next = prev; // update currentnode with address of prev node
+			
+			// update prev and curr node
+			prev = curr;
+			curr = nextCurr;
+		}
+
+	head = prev;
+	return;
 }
 
 /**
@@ -103,11 +129,12 @@ int32_t main(){
 		insertAtHead(head, 0);
 
 		inserAtGivenPos(head, 7, 2);
-		
+		printLinkedList(head);
+
+		iterativeReverse(head);
 		printLinkedList(head);
 
 		head = recursiveReverse(head);
-
 		printLinkedList(head);
 
 	return 0;
