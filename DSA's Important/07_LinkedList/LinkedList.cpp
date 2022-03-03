@@ -105,6 +105,46 @@ void iterativeReverse(Node* &head){
 }
 
 /**
+ * reverse k individual block present in the 
+ * liked list
+ * 
+ * @param head passes as a reference object
+ * @param k length of the block
+ * 
+ * return the resultant linkedList
+*/
+Node *kReverse(Node *head, int k){
+	// our base case
+	// if the head reached to the end node
+
+	if (head == NULL)
+		return NULL;
+
+	// reverse the first k nodes
+	// through recusion
+	Node *prev = NULL;
+	Node *curr = head;
+	Node *nextCurr;
+
+	int cnt = 1;
+
+		while (curr != NULL and cnt <= k){
+			nextCurr = curr->next; //store the address of currentnode
+			curr->next = prev; // update currentnode with address of prev node
+			
+			// update prev and curr node
+			prev = curr;
+			curr = nextCurr;
+			cnt++;
+		}
+
+		if (nextCurr != NULL)
+			head->next = kReverse(nextCurr, k);
+
+	return prev;
+}
+
+/**
  * print the linked list
  * 
  * 
@@ -129,13 +169,16 @@ int32_t main(){
 		insertAtHead(head, 0);
 
 		inserAtGivenPos(head, 7, 2);
-		printLinkedList(head);
+		printLinkedList(head); // 0->1->2->7->3->4->5->NULL
 
 		iterativeReverse(head);
-		printLinkedList(head);
+		printLinkedList(head); // 5->4->3->7->2->1->0->NULL
 
 		head = recursiveReverse(head);
-		printLinkedList(head);
+		printLinkedList(head); // 0->1->2->7->3->4->5->NULL
+
+		head = kReverse(head, 3);
+		printLinkedList(head); // 2->1->0->4->3->7->5->NULL
 
 	return 0;
 }
