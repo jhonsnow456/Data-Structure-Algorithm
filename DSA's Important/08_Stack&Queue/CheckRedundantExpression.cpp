@@ -10,32 +10,31 @@ using namespace std;
 bool checkRedundant(string str){
 	stack<char> stk;
 
-		for (char &c: str){
-			if (c == ')')
-				stk.push(c); // a, b, +, -, (, ...
-			else{
+	for(char &c : str){
+		if(c != ')')
+			stk.push(c); // a,b, + , - , ( ....
+		
+		else{
+			// ')'
+			bool operator_found = false;
+
+			while(!stk.empty() and stk.top()!='('){
+				char top = stk.top();
 				
-				// )
+				if(top=='+' or top=='-' or top=='*' or top=='/')
+					operator_found = true;
 
-				bool operatorFound = false;
-
-				while (!stk.empty() and stk.top() != '('){
-					char top = stk.top();
-
-					if (top == '+' or top == '-' or top == '*' or top == '/')
-						operatorFound = true;
-
-					stk.pop();
-				}
-
-				// pop the opening bracket after
-				// the loop if over
-				stk.pop(); 
-
-				if (operatorFound == false)
-					return true;
+				stk.pop();
 			}
+
+			//pop the opening bracked 
+			// after the loop if over
+			stk.pop(); 
+
+			if(operator_found == false)
+				return true;
 		}
+	}
 
 	return false;
 }
