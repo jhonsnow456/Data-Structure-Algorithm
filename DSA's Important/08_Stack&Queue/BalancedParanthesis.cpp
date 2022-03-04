@@ -7,43 +7,51 @@
 
 using namespace std;
 
-bool checkRedundant(string str){
+bool isBalanced(string s){
 	stack<char> stk;
-
-	for(char &c : str){
-		if(c != ')')
-			stk.push(c); // a,b, + , - , ( ....
-		
-		else{
-			// ')'
-			bool operator_found = false;
-
-			while(!stk.empty() and stk.top()!='('){
-				char top = stk.top();
-				
-				if(top=='+' or top=='-' or top=='*' or top=='/')
-					operator_found = true;
-
-				stk.pop();
+		for (char &c: s){
+			
+			if (c == '[' or c == '(' or c == '{'){
+				stk.push(c);
+				continue;
 			}
 
-			//pop the opening bracked 
-			// after the loop if over
-			stk.pop(); 
+			if (stk.empty())
+				return false;
 
-			if(operator_found == false)
-				return true;
+			char x;
+
+			switch(c){
+				case ')':
+					x = stk.top();
+					stk.pop();
+					if (x == '{' or x == '[')
+						return false;
+					break;
+
+				case '}':
+					x = stk.top();
+					stk.pop();
+					if (x == '(' or x == '[')
+						return false;
+					break;
+				
+				case ']':
+					x = stk.top();
+					stk.pop();
+					if (x == '(' or x == '{')
+						return false;
+					break;
+			}
 		}
-	}
-
-	return false;
+	return stk.empty();
 }
 
 int32_t main(){
 	// write the code here
-	string expression; cin >> expression;
+	string expression = "[A + (B + C)]";
 
-		cout << (checkRedundant(expression) ? "Redundant expression" : "Not a redundant expression") << endl;
+		cout << (isBalanced(expression) ? "Balanced Expression" : "Not a Balanced expression") << endl;
 
 	return 0;
 }
