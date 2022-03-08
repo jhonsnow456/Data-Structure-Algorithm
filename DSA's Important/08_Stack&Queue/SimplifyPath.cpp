@@ -9,7 +9,7 @@
 
 using namespace std;
 
-vector<string> splitStringOnForwardSlash(string path){
+vector<string> tokenizeArrayOnRegex(string path){
 	vector<string> elements;
 	string rgx_str = "/+";
 
@@ -26,10 +26,24 @@ vector<string> splitStringOnForwardSlash(string path){
 	return elements;
 }
 
+vector<string> tokenizeArrayOnSStream(string path){
+	istringstream iss(path);
+	vector<string> tokens;
+	string token;
+
+		while (getline(iss, token, '/')){
+			if (token == "." or token == "")
+				continue;
+			tokens.push_back(token);
+		}
+
+	return tokens;
+}
+
 string simplifyPath(string path){
-   //complete this code return the simplified path
+    //complete this code return the simplified path
    	string res;
-   	vector<string> tokens = splitStringOnForwardSlash(path);
+   	vector<string> tokens = tokenizeArrayOnSStream(path);
    	vector<string> stk;
 
    		for (auto token: tokens){
