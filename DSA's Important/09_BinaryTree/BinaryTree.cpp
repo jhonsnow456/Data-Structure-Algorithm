@@ -19,6 +19,10 @@ struct Node{
 	}
 };
 
+// ==============================================================
+// 							Build A Binary Tree
+// ==============================================================
+
 /**
  * Build a tree
  * 
@@ -35,43 +39,6 @@ Node *buildTree(){
 		node->right = buildTree();
 
 	return node;
-}
-
-/**
- * Level order traversal 
- * 
- * input: 1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
- * output:
- * 1, 
- * 2, 3, 
- * 4, 5, 6, 
- * 7, 
-*/
-void levelOrderPrint(Node *root){
-	queue<Node *> q;
-
-		q.push(root);
-		q.push(NULL);
-
-
-		while (!q.empty()){
-			Node *temp = q.front();
-			if (temp == NULL){
-				cout << endl;
-				q.pop();
-
-				// insert a new null
-				if (!q.empty())
-					q.push(NULL);
-			}else{
-				q.pop();
-				cout << temp->data << ", ";
-				if (temp->left)
-					q.push(temp->left);
-				if (temp->right)
-					q.push(temp->right);
-			}
-		}
 }
 
 /**
@@ -110,6 +77,47 @@ Node *buildTreeForLevelOrderInput(){
 		}
 
 	return root;
+}
+
+// ==============================================================
+// 							Level Order Traversal
+// ==============================================================
+
+/**
+ * Level order traversal 
+ * 
+ * input: 1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
+ * output:
+ * 1, 
+ * 2, 3, 
+ * 4, 5, 6, 
+ * 7, 
+*/
+void levelOrderPrint(Node *root){
+	queue<Node *> q;
+
+		q.push(root);
+		q.push(NULL);
+
+
+		while (!q.empty()){
+			Node *temp = q.front();
+			if (temp == NULL){
+				cout << endl;
+				q.pop();
+
+				// insert a new null
+				if (!q.empty())
+					q.push(NULL);
+			}else{
+				q.pop();
+				cout << temp->data << ", ";
+				if (temp->left)
+					q.push(temp->left);
+				if (temp->right)
+					q.push(temp->right);
+			}
+		}
 }
 
 
@@ -173,14 +181,37 @@ HDPair optimalDiameterofBinaryTree(Node *root){
 	return p;
 }
 
+// =========================================================
+// 						Decendent Sum
+// =========================================================
+int decendentSum(Node *root){
+	if (root == NULL)
+		return 0;
+	if (root->left == NULL and root->right == NULL)
+		return root->data;
+
+	int leftSum = decendentSum(root->left);
+	int rightSum = decendentSum(root->right);
+	
+	int data = root->data;
+	root->data = leftSum + rightSum;
+
+	return root->data + data;
+} 
+
 int32_t main(){
 	// write the code here
 	Node *root = buildTreeForLevelOrderInput();
 
 		cout << "Level Order Binary Tree: \n";
 		levelOrderPrint(root);
-		cout << "Diameter of the tree: " << diameter(root) << endl;
-		cout << "Optimized Diameter of the binary tree: " << optimalDiameterofBinaryTree(root).diameter << endl;
+
+		cout << "\nDiameter of the tree: " << diameter(root) << endl;
+		cout << "\nOptimized Diameter of the binary tree: " << optimalDiameterofBinaryTree(root).diameter << endl;
+		cout << "\nDescent Sum: " << decendentSum(root) << endl;
+		
+		cout << "\nLevel Order Binary Tree: \n";
+		levelOrderPrint(root);
 
 	return 0;
 }
