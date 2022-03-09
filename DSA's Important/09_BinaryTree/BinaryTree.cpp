@@ -112,6 +112,13 @@ Node *buildTreeForLevelOrderInput(){
 	return root;
 }
 
+
+// ===========================================================
+// 					Diameter of Binary Tree
+// ===========================================================
+
+
+// Normal approch
 int height(Node *root){
 	if (root == NULL)
 		return 0;
@@ -139,12 +146,41 @@ int diameter(Node *root){
 	return max(D1, max(D2, D3));
 }
 
+// Optimized Approch
+struct HDPair{
+	int height;
+	int diameter;
+};
+
+HDPair optimalDiameterofBinaryTree(Node *root){
+	if (root == NULL)
+		return {0, 0};
+
+		// otherwise
+		HDPair Left = optimalDiameterofBinaryTree(root->left);
+		HDPair Right = optimalDiameterofBinaryTree(root->right);
+
+	HDPair p;
+
+		p.height = max(Left.height, Right.height) + 1;
+		
+		int D1 = Left.height + Right.height;
+		int D2 = Left.diameter;
+		int D3 = Right.diameter;
+
+		p.diameter = max(D1, max(D2, D3));
+
+	return p;
+}
+
 int32_t main(){
 	// write the code here
 	Node *root = buildTreeForLevelOrderInput();
 
+		cout << "Level Order Binary Tree: \n";
 		levelOrderPrint(root);
-		cout << "\nDiameter of the tree: " << diameter(root) << endl;
+		cout << "Diameter of the tree: " << diameter(root) << endl;
+		cout << "Optimized Diameter of the binary tree: " << optimalDiameterofBinaryTree(root).diameter << endl;
 
 	return 0;
 }
