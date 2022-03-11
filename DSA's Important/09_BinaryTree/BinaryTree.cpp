@@ -199,6 +199,27 @@ int decendentSum(Node *root){
 	return root->data + data;
 } 
 
+// =================================================================
+// 							Height Balanced Tree
+// =================================================================
+pair<int, bool> isHeightBalanced(Node *root){
+	if (root == NULL)
+		return {0, true};
+
+	// left subtree & right subtree
+	pair<int, bool> Left = isHeightBalanced(root->left);
+	pair<int, bool> Right = isHeightBalanced(root->right);
+
+	pair<int, bool> res;
+
+		res.first = 1 + max(Left.first, Right.first);
+
+		if (abs(Left.first - Right.first) <= 1 and Left.second and Right.second)
+			res.second = true;
+
+	return res;
+}
+
 int32_t main(){
 	// write the code here
 	Node *root = buildTreeForLevelOrderInput();
@@ -212,6 +233,8 @@ int32_t main(){
 		
 		cout << "\nLevel Order Binary Tree: \n";
 		levelOrderPrint(root);
+
+		cout << "\nIs the tree Balanced? " << (isHeightBalanced(root).second ? "Yes it's!\n": "No it's not\n");
 
 	return 0;
 }
