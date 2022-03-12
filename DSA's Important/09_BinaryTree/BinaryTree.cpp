@@ -220,12 +220,44 @@ pair<int, bool> isHeightBalanced(Node *root){
 	return res;
 }
 
+// ===============================================================
+// 							Max Subset sum 
+// ===============================================================
+
+struct IEPair{
+	int include;
+	int exclude;
+};
+
+IEPair maxSubsetSum(Node *root){
+	if (root == NULL)
+		return {0, 0};
+
+	IEPair Left = maxSubsetSum(root->left);
+	IEPair Right = maxSubsetSum(root->right);
+
+	IEPair result;
+
+	// include signify the involvement of root node without 
+	// its children 
+	result.include = root->data + Left.exclude + Right.exclude;
+	
+	// exculde signify that wether to include the max of 
+	// left child and right child 
+	result.exclude = max(Left.include, Left.exclude) + max(Right.include, Right.exclude);
+
+	return result;
+}
+
 int32_t main(){
 	// write the code here
 	Node *root = buildTreeForLevelOrderInput();
 
 		cout << "Level Order Binary Tree: \n";
 		levelOrderPrint(root);
+
+		IEPair MaxSubsetSum =  maxSubsetSum(root);
+		cout << "\nMaximum max SubsetSum: " << max(MaxSubsetSum.include, MaxSubsetSum.exclude) << endl;
 
 		cout << "\nDiameter of the tree: " << diameter(root) << endl;
 		cout << "\nOptimized Diameter of the binary tree: " << optimalDiameterofBinaryTree(root).diameter << endl;
@@ -235,6 +267,6 @@ int32_t main(){
 		levelOrderPrint(root);
 
 		cout << "\nIs the tree Balanced? " << (isHeightBalanced(root).second ? "Yes it's!\n": "No it's not\n");
-
+	
 	return 0;
 }
