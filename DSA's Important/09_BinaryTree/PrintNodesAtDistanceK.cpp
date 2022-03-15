@@ -39,14 +39,18 @@ void printAtLevelK(Node* root, int k){
 
 int printNodesAtDistanceK(Node* root, Node* target, int k){
 
+	// we have not find the distance
 	if(root == NULL)
 		return -1;
 
+	// case 1: we have found our target
 	if(root == target){
 		printAtLevelK(target, k);
 		return 0;
 	}
 	
+	// case 2: for ancestor wether it for distance in left subtree
+	// or for right subtree 
 	int DL = printNodesAtDistanceK(root->left,target, k);
 	
 		if(DL != -1){
