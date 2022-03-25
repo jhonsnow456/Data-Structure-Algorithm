@@ -20,8 +20,6 @@ struct  Node{
 };
 
 Node* findInOrderSuccessor(Node *inputNode){
-    //Complete this Method, return the pointer to the inorder successor
-    // HINT : Since the parent pointer is given, you can traverse upwards in the tree
     
     //find the left most child of right subtree if it exists
 	if(inputNode->right){
