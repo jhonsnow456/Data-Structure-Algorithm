@@ -22,9 +22,15 @@ struct Node{
 };
 
 Node *mergeLinkedList(Node *linklist1, Node *linklist2){
+	// when list1 is empty then our output will 
+	// be same as list2
 	if (linklist1 == NULL) return linklist2;
+	
+	// when list1 is empty then our output will 
+	// be same as list1
 	if (linklist2 == NULL) return linklist1;
 
+	// pointing l1 and l2 to smallest and greatest one
 	if (linklist1->data > linklist2->data) swap(linklist1, linklist1);
 
 	Node *res = linklist1;
@@ -33,10 +39,12 @@ Node *mergeLinkedList(Node *linklist1, Node *linklist2){
 			Node *temp = NULL;
 
 			while (linklist1 != NULL and linklist1->data <= linklist2->data){
-				temp = linklist1;
+				temp = linklist1; // storing last sorted node
 				linklist1 = linklist1->next;
 			}
 
+			// link previous sorted node with 
+			// next larger node in list2
 			temp->next = linklist2;
 			swap(linklist1, linklist2);
 		}
