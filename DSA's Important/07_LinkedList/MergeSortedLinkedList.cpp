@@ -31,7 +31,7 @@ Node *mergeLinkedList(Node *linklist1, Node *linklist2){
 	if (linklist2 == NULL) return linklist1;
 
 	// pointing l1 and l2 to smallest and greatest one
-	if (linklist1->data > linklist2->data) swap(linklist1, linklist1);
+	if (linklist1->data > linklist2->data) swap(linklist1, linklist2);
 
 	Node *res = linklist1;
 
