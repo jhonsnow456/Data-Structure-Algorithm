@@ -9,26 +9,59 @@
 
 using namespace std;
 
-int maxSubarraySum(vector<int> arr){
-    //Complete this function, your function should return the maximum subarray sum
-    int n = arr.size();
-	int sum = INT32_MIN, maxtillnow = 0;
+#define int long long int
 
-	// 	arr = -1 2 3 4 -2 6  -8 3
+int maxSubArray(vector<int> const &arr, vector<int> &subarray){
+	int n = arr.size();
+	int msf = INT_MIN, meh = 0, start = 0;
+
 		for (int i = 0; i < n; i++){
-			maxtillnow += arr[i];
-			sum = max(sum, maxtillnow); 
-			// sum = -1 2 5 9 13 
-			maxtillnow = (maxtillnow < 0) ? 0 : maxtillnow;
-			// maxtillnow = 0 2 5 9  7 13  5 8 
+			meh += arr[i];
+
+			if (meh > msf){
+				msf = meh;
+
+				subarray.clear();
+				subarray.push_back(start);
+				subarray.push_back(i);
+			}
+
+			if (meh < 0){
+				meh = 0;
+				start = i + 1;
+			}
 		}
 
-	return sum;   
+	return msf;
+}
+
+void print(vector<int> const &arr, vector<int> const &res){
+	for (int i = res[0]; i <= res[1]; i++)
+		cout << arr[i] << " ";
+	cout << endl;
+}
+
+void solve(){
+	// write the code here
+	vector <int> arr = {-2, 1, -3, 4, -1, 2, 1, -5, -4};
+	vector <int> subarray;
+
+		int res = maxSubArray(arr, subarray);
+
+	cout << "Longest Sum of subarray: " << res << endl;
+	print(arr, subarray);	
 }
 
 int32_t main(){
-	// write the code here
-	vector<int> arr = {-1, 2, 3, 4, -2, 6, -8, 3};
-		cout << maxSubarraySum(arr) << endl;
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+	int test_case = 1;
+	// std::cin >> test_case;
+ 
+		for(int i = 1; i <= test_case; i++) {
+			// std::cout<<"Case #"<< i <<": "; 
+			solve();
+		}
+		
 	return 0;
 }
