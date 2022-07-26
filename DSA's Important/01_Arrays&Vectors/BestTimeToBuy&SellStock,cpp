@@ -1,0 +1,49 @@
+/*
+    यावद्बध्दो मरुद देहे यावच्चित्तं निराकुलम्।
+    यावद्द्रॄष्टिभ्रुवोर्मध्ये तावत्कालभयं कुत: ॥
+*/
+
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define int long long int
+
+int maxProfit(vector<int> &arr){
+	int n = arr.size();
+	int max_profit = 0, min_price = INT_MAX;
+
+		for (int i = 0; i < n; i++){
+			min_price = min(min_price, arr[i]);
+			max_profit = max(max_profit, arr[i] - min_price);
+		}
+	return max_profit;		
+}
+
+void solve(){
+	// write the code here
+	int n; cin >> n;
+	vector<int> arr(n);
+
+		for (int &i: arr) cin >> i;
+		
+	int res = maxProfit(arr); 
+
+	cout << "Max Profit: " << res << endl;	
+}
+
+int32_t main(){
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+	int test_case = 1;
+	// std::cin >> test_case;
+ 
+		for(int i = 1; i <= test_case; i++) {
+			// std::cout<<"Case #"<< i <<": "; 
+			solve();
+		}
+		
+	return 0;
+}
