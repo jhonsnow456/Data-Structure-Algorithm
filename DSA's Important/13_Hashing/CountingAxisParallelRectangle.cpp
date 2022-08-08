@@ -45,7 +45,7 @@ int count_rectangles(vector<Point> points){
 				Point p3(p1.x, p2.y);
 				Point p4(p2.x, p1.y);
 
-				if (s.find(p3) != s.end() and s.find(p4) != s.end())
+				if (s.count(p3) > 0 and s.count(p4) > 0)
 					ans++;
 			}
 		}
